@@ -18,10 +18,14 @@ func (b Bitcoin) String() string {
 	return fmt.Sprintf("%d BTC", b)
 }
 
+// 在 Go 中，错误是值，因此我们可以将其重构为一个变量，并为其提供一个单一的事实来源。
+// var 关键字允许我们定义包的全局值。
+var InsufficientFundsError = errors.New("cannot withdraw, insufficient funds")
+
 func (w *Wallet) Withdraw(amount Bitcoin) error {
 
 	if amount > w.balance {
-		return errors.New("oh no")
+		return InsufficientFundsError
 	}
 
 	w.balance -= amount

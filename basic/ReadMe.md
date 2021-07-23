@@ -8,3 +8,10 @@
 
 table driven test
 https://github.com/golang/go/wiki/TableDrivenTests
+
+当你创建一个值，例如一个 wallet，它就会被存储在内存的某处。你可以用 &myval 找到那块内存的地址。
+
+    fmt.Println("address of balance in test is", &wallet.balance)    
+    fmt.Println("address of balance in Deposit is", &w.balance)
+
+
